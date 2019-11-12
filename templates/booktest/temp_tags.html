@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模版标签</title>
+    <style>
+        .red {
+            color: red;
+        }
+        .yellow {
+            color: yellow;
+        }
+        .green {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    {% for book in books %}
+        <!--forloop.counter 记录遍历到第几次-->
+        {% if book.id <= 2 %}
+            <li class="red">{{ forloop.counter }}----{{ book.btitle }}</li>
+        {% elif book.id <= 3 %}
+            <li class="yellow">{{ forloop.counter }}----{{ book.btitle }}</li>
+        {% else %}
+            <li class="green">{{ forloop.counter }}----{{ book.btitle }}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+</body>
+</html>

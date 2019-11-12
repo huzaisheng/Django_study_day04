@@ -1,0 +1,11 @@
+{% extends 'booktest/base.html' %}
+{% block title %}子模块文件{% endblock title %}
+{% block b1 %}
+    <!--  调用父模版  -->
+    {{ block.super }}
+    <h1>这是子模块b1快中的内容</h1>
+{% endblock b1 %}
+
+{% block b2 %}
+    <h1>这是子模块b2快中的内容</h1>
+{% endblock b2 %}

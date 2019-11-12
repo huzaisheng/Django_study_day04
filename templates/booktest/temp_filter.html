@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--加载自定义过滤器-->
+{% load filters %}
+<head>
+    <meta charset="UTF-8">
+    <title>模版过滤器</title>
+    <style>
+        .red {
+            color: red;
+        }
+        .yellow {
+            color: yellow;
+        }
+        .green {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    {% for book in books %}
+        <!--forloop.counter 记录遍历到第几次-->
+        <!-- 模版单行注释
+            {# 注释内容 #}
+         -->
+
+        <!-- 模版多行注释
+            {% comment %}
+                注释内容
+            {% endcomment %}
+         -->
+        {# {% if book.id <= 2 %} #}
+        <!-- 能被2整除 -->
+        {# {% if book.id|mod %} #}
+        <!-- 能被3整除 -->
+        {% if book.id|mod_val:3 %}
+            <li class="red">{{ book.btitle }}---{{ book.bpub_date|date:'Y/m//d' }}</li>
+        {% else %}
+            <li class="green">{{ book.btitle }}---{{ book.bpub_date|date:'y年n月j日' }}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+default过滤器:<br>
+{{ content|default:'nothing' }}
+</body>
+</html>

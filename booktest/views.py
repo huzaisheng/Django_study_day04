@@ -94,7 +94,11 @@ def login_check(request):
 
     # 获取用户输入的验证码
     vcode1 = request.POST.get('vcode')
+    # 获取session中保存的验证码
+    vcode2 = request.session.get('verifycode')
 
+    if vcode1 != vcode2:
+        return redirect('/login')
     # 2、进行登录的校验
     # 实际开发：根据用户名和密码查找数据库
     # 模拟: smart  123

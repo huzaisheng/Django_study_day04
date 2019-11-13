@@ -1,8 +1,9 @@
 from django.conf.urls import include,url
 from booktest import views
 
+app_name = 'booktest'
 urlpatterns = [
-    url(r'^index$', views.index),
+    url(r'^index2$', views.index, name='index'),
 
     url(r'^temp_var$', views.temp_var), # 模板变量
 
@@ -18,4 +19,9 @@ urlpatterns = [
     url(r'^change_pwd_action$', views.change_pwd_action), # 修改密码处理
 
     url(r'^verify_code$', views.verify_code), # 产生验证码图片
+
+    url(r'^url_reverse$', views.url_reverse), # url反向解析
+    url(r'^show_args/(\d+)/(\d+)$', views.show_args, name='show_args'), # 捕获位置参数
+    url(r'^show_kwargs/(?P<c>\d+)/(?P<d>\d+)$', views.show_kwargs, name='show_kwargs'), # 捕获关键字参数
+    url(r'^test_redirect$', views.test_redirect), # 反向解析重定向
 ]

@@ -185,3 +185,30 @@ def verify_code(request):
     im.save(buf, 'png')
     # 将内存中的图片数据返回给客户端，MIME类型为图片png
     return HttpResponse(buf.getvalue(), 'image/png')
+
+# /url_reverse
+def url_reverse(request):
+    """url反向解析页面"""
+    return render(request, 'booktest/url_reverse.html')
+
+def show_args(request, a, b):
+    return HttpResponse(a+':'+b)
+
+def show_kwargs(request, c, d):
+    return HttpResponse(c+':'+d)
+
+# 视图重定向的时候使用反向解析
+# 反向解析： 配置项改动后不需要更改页面上其他信息
+from django.urls import reverse
+# /test_redirect
+def test_redirect(request):
+    # 重定向到首页（/index）
+    # return redirect('/index')
+    url = reverse('booktest:index')
+
+    # 重定向到/show_args/1/2
+    url = reverse('booktest:show_args', args=(1,2))
+
+    # 重定向到/show_kwargs/3/4
+    url = reverse('booktest:show_kwargs', kwargs={'c':3,'d':4})
+    return redirect(url)

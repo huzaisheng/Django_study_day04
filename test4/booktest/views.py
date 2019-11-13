@@ -97,7 +97,9 @@ def login_check(request):
     # 获取session中保存的验证码
     vcode2 = request.session.get('verifycode')
 
+    # 进行验证码校验
     if vcode1 != vcode2:
+        # 验证码错误
         return redirect('/login')
     # 2、进行登录的校验
     # 实际开发：根据用户名和密码查找数据库
